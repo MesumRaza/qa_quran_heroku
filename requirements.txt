@@ -1,0 +1,2 @@
+streamlit==0.57.3
+farm-haystack==0.6.0
