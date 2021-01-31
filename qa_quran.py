@@ -37,7 +37,7 @@ if st.button('Ask'):
             reader.save(directory='data/mlm-temp')
             st.info('Downloaded Fresh Model')
         else:
-#             reader = FARMReader(model_name_or_path="data/mlm-temp", use_gpu=False)
+            reader = FARMReader(model_name_or_path="data/mlm-temp", use_gpu=False)
             st.info('Re-Used Model')
             
         finder = Finder(reader, retriever)
@@ -51,3 +51,5 @@ if st.button('Ask'):
         answer_frame.columns=['answer','reference','Surah','confidence','score']
         answer_frame['Surah']=answer_frame['Surah']
         st.table(answer_frame.T)
+        
+        del reader
