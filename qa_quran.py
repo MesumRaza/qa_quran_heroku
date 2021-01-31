@@ -10,7 +10,7 @@ import streamlit as st
 
 st.markdown("<center> <h1> 📜 Questions And Answering Using Quran's English Translation </h1> </center>", True)
 
-@st.cache
+
 def read_corpus():
     document_store = InMemoryDocumentStore()
     doc_dir = "Quran"
@@ -18,7 +18,7 @@ def read_corpus():
     document_store.write_documents(dicts)
     return document_store
 
-@st.cache
+
 def retriever():
     document_store = read_corpus()
     retriever = TfidfRetriever(document_store=document_store)
