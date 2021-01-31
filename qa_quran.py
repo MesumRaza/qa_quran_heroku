@@ -7,9 +7,6 @@ import streamlit as st
 from os import path
 import pandas as pd
 
-#max_width_str = f"max-width: 1600px;"
-#st.markdown(f"""<style> .reportview-container .main .block-container{{{max_width_str}}}</style>""", True)
-
 st.markdown("<center> <h1> 📜 Questions And Answering Using Quran's English Translation </h1> </center>", True)
 
 @st.cache
@@ -20,7 +17,7 @@ def read_corpus():
     document_store.write_documents(dicts)
     return document_store
 
-
+@st.cache(allow_output_mutation=True)
 def retriever():
     document_store = read_corpus()
     retriever = TfidfRetriever(document_store=document_store)
@@ -52,4 +49,4 @@ if st.button('Ask'):
         answer_frame['Surah']=answer_frame['Surah']
         st.table(answer_frame.T)
         
-        del reader
+        del reader,prediction,finder
