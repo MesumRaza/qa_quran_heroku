@@ -34,7 +34,7 @@ if st.button('Ask'):
         
         if not(path.exists('data/mlm-temp')):
             reader = FARMReader(model_name_or_path="deepset/minilm-uncased-squad2", use_gpu=False)
-            reader.save(directory='data/mlm-temp)
+            reader.save(directory='data/mlm-temp')
         else:
             reader = FARMReader(model_name_or_path="data/mlm-temp", use_gpu=False)
         
