@@ -24,16 +24,13 @@ def retriever():
     retriever = TfidfRetriever(document_store=document_store)
     return retriever
 
-@st.cache(allow_output_mutation=True)
-def get_reader():
-    return FARMReader(model_name_or_path="deepset/minilm-uncased-squad2", use_gpu=False)
-
 question = st.text_input('Input your question here:')
 
 if st.button('Ask'):
     with st.spinner('Reading all the translations from all over Quran'):
         retriever = retriever()
-        reader = get_reader()
+        reader = FARMReader(model_name_or_path="deepset/minilm-uncased-squad2", use_gpu=False)
+        reader_large.save(directory='./')
         finder = Finder(reader, retriever)
         prediction = finder.get_answers(question=question, top_k_retriever=10, top_k_reader=5)
         st.info(prediction['answers'][0]['answer'])
