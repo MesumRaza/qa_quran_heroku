@@ -35,9 +35,11 @@ if st.button('Ask'):
         if not(path.exists('data/mlm-temp')):
             reader = FARMReader(model_name_or_path="deepset/minilm-uncased-squad2", use_gpu=False)
             reader.save(directory='data/mlm-temp')
+            st.info('Downloaded Fresh Model')
         else:
             reader = FARMReader(model_name_or_path="data/mlm-temp", use_gpu=False)
-        
+            st.info('Re-Used Model')
+            
         finder = Finder(reader, retriever)
         
         prediction = finder.get_answers(question=question, top_k_retriever=10, top_k_reader=5)
