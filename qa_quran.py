@@ -8,13 +8,7 @@ import streamlit as st
 #max_width_str = f"max-width: 1600px;"
 #st.markdown(f"""<style> .reportview-container .main .block-container{{{max_width_str}}}</style>""", True)
 
-st.markdown("<center> <h1> 📜 Questions And Answering Game of thrones </h1> </center>", True)
-
-image = """<img src="https://www.itl.cat/pngfile/big/2-25471_ultra-hd-game-of-thrones.jpg"
-alt="Game of thrones"
-style="width: 100%; height: 300px;">"""
-st.markdown(image, True)
-
+st.markdown("<center> <h1> 📜 Questions And Answering Using Quran's English Translation </h1> </center>", True)
 
 @st.cache
 def read_corpus():
