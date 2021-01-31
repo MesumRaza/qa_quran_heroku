@@ -12,7 +12,7 @@ import pandas as pd
 
 st.markdown("<center> <h1> 📜 Questions And Answering Using Quran's English Translation </h1> </center>", True)
 
-
+@st.cache
 def read_corpus():
     document_store = InMemoryDocumentStore()
     doc_dir = "Quran"
