@@ -4,6 +4,8 @@ from haystack.reader.farm import FARMReader
 from haystack.document_store.memory import InMemoryDocumentStore
 from haystack.retriever.sparse import TfidfRetriever
 import streamlit as st
+from os import path
+import pandas as pd
 
 #max_width_str = f"max-width: 1600px;"
 #st.markdown(f"""<style> .reportview-container .main .block-container{{{max_width_str}}}</style>""", True)
@@ -29,9 +31,21 @@ question = st.text_input('Input your question here:')
 if st.button('Ask'):
     with st.spinner('Reading all the translations from all over Quran'):
         retriever = retriever()
-        reader = FARMReader(model_name_or_path="deepset/minilm-uncased-squad2", use_gpu=False)
-        reader.save(directory='./')
+        
+        if not(path.exists('data/mlm-temp')):
+            reader = FARMReader(model_name_or_path="deepset/minilm-uncased-squad2", use_gpu=False)
+            reader.save(directory='data/mlm-temp)
+        else:
+            reader = FARMReader(model_name_or_path="data/mlm-temp", use_gpu=False)
+        
         finder = Finder(reader, retriever)
+        
         prediction = finder.get_answers(question=question, top_k_retriever=10, top_k_reader=5)
-        st.info(prediction['answers'][0]['answer'])
 
+        keys=['answer','context','meta','probability','score']
+        print(list( map(prediction.get, ['query'])))
+        print("\n")
+        answer_frame=pd.DataFrame.from_records([list( map(i.get, keys)) for i in prediction['answers']])
+        answer_frame.columns=['answer','reference','Surah','confidence','score']
+        answer_frame['Surah']=answer_frame['Surah']
+        st.table(answer_frame.T)
