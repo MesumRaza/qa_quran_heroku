@@ -24,7 +24,7 @@ def retriever():
     retriever = TfidfRetriever(document_store=document_store)
     return retriever
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def get_reader():
     return FARMReader(model_name_or_path="deepset/minilm-uncased-squad2", use_gpu=False)
 
