@@ -37,7 +37,7 @@ if st.button('Ask'):
             reader.save(directory='data/mlm-temp')
             st.info('Downloaded Fresh Model')
         else:
-            reader = FARMReader(model_name_or_path="data/mlm-temp", use_gpu=False)
+#             reader = FARMReader(model_name_or_path="data/mlm-temp", use_gpu=False)
             st.info('Re-Used Model')
             
         finder = Finder(reader, retriever)
