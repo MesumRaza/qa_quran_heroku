@@ -1,3 +1,4 @@
 streamlit==0.75.0
+farm-haystack==0.6.0
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.7.0+cpu
