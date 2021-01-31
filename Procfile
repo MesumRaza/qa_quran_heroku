@@ -1,1 +1,2 @@
-web: sh setup.sh && streamlit run qa_quran.py
+web: sh setup.sh
+web: streamlit run --server.enableCORS false --server.port $PORT ResponsiveFrontEnd_Streamlit.py
